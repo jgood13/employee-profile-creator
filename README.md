@@ -2,26 +2,27 @@
 
 ## Description
 
-This is a back-end API that can be called on to get, post, update, or delete products, categories, and tags for a theoretical e-commerce site
+This is a app that uses Inquirer to take in prompts for manager, engineer, and interns and then dynamically creates html for the info to go into so that it can be displayed in a webpage.
 
 ## How to use
 
-To use this application you must first sign into mysql and drop/create a new fresh database. Then you need to call on the index file in the seeds folder to seed the database. Then if you call on server.js it will start the connection with localhost.
-
-After it is connected with localhost you are able to use insomnia to make get/post requests on any of '/api/tags', '/api/categories', or '/api/products'. To search for just one or to update/delete you must declare the id after ex."/api/tags/1".
+To use this application you need to run 'node index.js' and then follow the prompts in the console. As soon as you're done inputting employees you can just click 'no' when it asks if you want to add more. Then a html page will be created in the dist folder. If you open that page in browser all employees will have cards added.
 
 ## Resources used
 
-1. mysql2
-2. Sequelize
-3. Express
-4. Nodejs
+1. Inquirer
+2. FS
 
 ## Github Repo
 
 <a href = "https://github.com/jgood13/employee-profile-creator"
 target="_blank">Github Repo</a>
 
+## Video Demonstration
+
+<a href=https://drive.google.com/file/d/1N-TbOqz0C4rOlD_ud_54WhyQJzwwV90V/view
+target="_blank">Walkthrough</a>
+
 ## Screenshot/Gif
 
-![Screencapture of page](./assets/images/ecommerce_gif.gif "Page GIF")
+![Screencapture of page](./assets/images/employee-profile-creator.gif "Page GIF")
