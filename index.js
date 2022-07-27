@@ -141,8 +141,8 @@ addHtml = () => {
     </head>
     <body>
       <header>
-        <nav class="jumbotron jumbotron-fluid is-primary bg-success" id="navbar id="navbar">
-          <div class="navbar-brand mb-0 h1 w-100 text-center text-white" id="navbarText">
+        <nav class="jumbotron jumbotron-fluid is-primary bg-success">
+          <div class="display-5 font-weight-bold mb-0 h1 w-100 text-center text-white">
             Team Profile
           </div>
         </nav>
@@ -156,11 +156,11 @@ addHtml = () => {
     let cards = ``;
     if (teamArr[i].officeNum) {
       cards += `<div class="col-sm-4">
-      <div class="card shadow-lg">
+      <div class="card shadow-lg mb-5">
         <div class="card-body">
         <div class="card-body bg-primary">
         <h3 class="card-title text-white">${teamArr[i].name}</h3>
-        <h5 class="card-subtitle">${teamArr[i].role}</h5>
+        <h5 class="card-subtitle text-white">${teamArr[i].role}</h5>
         </div>
         <div class="list-group">
         <p class="card-text list-group-item"> ID:${teamArr[i].id}</p>
@@ -168,10 +168,11 @@ addHtml = () => {
         <p class="card-text list-group-item"> Office Number:${teamArr[i].officeNum}</p>
         </div>
         </div>
-    </div>`;
+    </div>
+  </div>`;
     } else if (teamArr[i].github) {
       cards += `<div class="col-sm-4">
-      <div class="card shadow-lg">
+      <div class="card shadow-lg mb-5">
         <div class="card-body">
         <div class="card-body bg-primary">
         <h3 class="card-title text-white">${teamArr[i].name}</h3>
@@ -182,20 +183,22 @@ addHtml = () => {
         <p class="card-text list-group-item">Email: <a href="mailto:${teamArr[i].email}" class="card-text">${teamArr[i].email}</a></p>
         <p class="card-text list-group-item"> Github:<a href="https://github.com/${teamArr[i].github}" target="_blank">${teamArr[i].github}</a></p>
         </div>
+        </div>
     </div>
   </div>`;
     } else {
       cards += `<div class="col-sm-4">
-      <div class="card shadow-lg">
+      <div class="card shadow-lg mb-5">
         <div class="card-body">
         <div class="card-body bg-primary">
-        <h4 class="card-title">${teamArr[i].name}</h4>
-        <h5 class="card-subtitle border-bottom">${teamArr[i].role}</h5>
+        <h3 class="card-title text-white">${teamArr[i].name}</h3>
+        <h5 class="card-subtitle text-white">${teamArr[i].role}</h5>
         </div>
         <div class="list-group">
         <p class="card-text list-group-item"> ID:${teamArr[i].id}</p>
         <p class="card-text list-group-item">Email: <a href="mailto:${teamArr[i].email}" class="card-text">${teamArr[i].email}</a></p>
         <p class="card-text list-group-item"> School:${teamArr[i].school}</p>
+        </div>
         </div>
     </div>
   </div>`;
@@ -204,11 +207,14 @@ addHtml = () => {
       if (err) throw err;
     });
   }
+  finalTouch();
+};
+
+finalTouch = () => {
   fs.appendFile(
     "./dist/index.html",
-    `
-    </div>
-</html>`,
+    `</div>
+    </html>`,
     (err) => {
       if (err) throw err;
     }
