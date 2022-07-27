@@ -146,39 +146,73 @@ addHtml = () => {
             Team Profile
           </div>
         </nav>
-      </header>`;
+      </header>
+      <div class="row m-5">`;
   fs.writeFile("./dist/index.html", htmlStart, (err) => {
     if (err) throw err;
   });
 
   for (let i = 0; i < teamArr.length; i++) {
-    let cards = `<main class="d-flex-row" style="align-content:space-between">
-    <div class="card" style="width: 15rem">
-    <div class="card-body">
-      <h4 class="card-title">${teamArr[i].name}</h4>
-      <h5 class="border-bottom">${teamArr[i].role}</h5>
-      <p class="card-text"> ID:${teamArr[i].email}</p>
-      <p class="card-text">Email: <a href="mailto:${teamArr[i].email}" class="card-text btn btn-primary">${teamArr[i].email}</a>`;
+    let cards = ``;
     if (teamArr[i].officeNum) {
-      cards += `<p class="card-text"> Office Number:${teamArr[i].officeNum}</p>`;
+      cards += `<div class="col-sm-4">
+      <div class="card shadow-lg">
+        <div class="card-body">
+        <div class="card-body bg-primary">
+        <h3 class="card-title text-white">${teamArr[i].name}</h3>
+        <h5 class="card-subtitle">${teamArr[i].role}</h5>
+        </div>
+        <div class="list-group">
+        <p class="card-text list-group-item"> ID:${teamArr[i].id}</p>
+        <p class="card-text list-group-item">Email: <a href="mailto:${teamArr[i].email}" class="card-text">${teamArr[i].email}</a></p>
+        <p class="card-text list-group-item"> Office Number:${teamArr[i].officeNum}</p>
+        </div>
+        </div>
+    </div>`;
     } else if (teamArr[i].github) {
-      cards += `<p class="card-text"> Github:<a href="${teamArr[i].github}" target="_blank">${teamArr[i].github}</a></p>`;
+      cards += `<div class="col-sm-4">
+      <div class="card shadow-lg">
+        <div class="card-body">
+        <div class="card-body bg-primary">
+        <h3 class="card-title text-white">${teamArr[i].name}</h3>
+        <h5 class="card-subtitle text-white">${teamArr[i].role}</h5>
+        </div>
+        <div class="list-group">
+        <p class="card-text list-group-item"> ID:${teamArr[i].id}</p>
+        <p class="card-text list-group-item">Email: <a href="mailto:${teamArr[i].email}" class="card-text">${teamArr[i].email}</a></p>
+        <p class="card-text list-group-item"> Github:<a href="https://github.com/${teamArr[i].github}" target="_blank">${teamArr[i].github}</a></p>
+        </div>
+    </div>
+  </div>`;
     } else {
-      cards += `<p class="card-text"> School:${teamArr[i].school}</p>`;
+      cards += `<div class="col-sm-4">
+      <div class="card shadow-lg">
+        <div class="card-body">
+        <div class="card-body bg-primary">
+        <h4 class="card-title">${teamArr[i].name}</h4>
+        <h5 class="card-subtitle border-bottom">${teamArr[i].role}</h5>
+        </div>
+        <div class="list-group">
+        <p class="card-text list-group-item"> ID:${teamArr[i].id}</p>
+        <p class="card-text list-group-item">Email: <a href="mailto:${teamArr[i].email}" class="card-text">${teamArr[i].email}</a></p>
+        <p class="card-text list-group-item"> School:${teamArr[i].school}</p>
+        </div>
+    </div>
+  </div>`;
     }
-    cards += `</div>
-            </div>
-            </main>
-            <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-            crossorigin="anonymous"
-            ></script>
-        </html>`;
     fs.appendFile("./dist/index.html", cards, (err) => {
       if (err) throw err;
     });
   }
+  fs.appendFile(
+    "./dist/index.html",
+    `
+    </div>
+</html>`,
+    (err) => {
+      if (err) throw err;
+    }
+  );
 };
 
 startApp();
