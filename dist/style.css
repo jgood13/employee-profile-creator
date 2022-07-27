@@ -1,0 +1,10 @@
+#navbar {
+  background-color: red;
+  height: 20rem;
+  align-items: center;
+  align-content: center;
+}
+
+#navbarText {
+  color: aliceblue;
+}

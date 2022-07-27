@@ -14,12 +14,12 @@ startApp = () => {
         name: "managerName",
         type: "input",
         message:
-          "Welcome to the profile generator! Please start by entering the Manager name",
+          "Welcome to the profile generator! Please start by entering the Manager name:",
       },
       {
         name: "managerEmail",
         type: "input",
-        message: "What is the Manager email",
+        message: "What is the Manager email?",
       },
       {
         name: "officeNum",
@@ -56,7 +56,7 @@ const addEmpPrompt = () => {
           addIntern();
           break;
         case "no":
-          finishRender();
+          addHtml();
           break;
       }
     });
@@ -122,6 +122,63 @@ addIntern = () => {
     });
 };
 
-finishRender = () => {};
+addHtml = () => {
+  let html = "";
+  console.log("Complete! now check out the HTML page!");
+  const htmlStart = `<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Team Profile</title>
+      <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+        crossorigin="anonymous"
+      />
+      <link rel="stylesheet" href="./dist/style.css" />
+    </head>
+    <body>
+      <header>
+        <nav class="jumbotron jumbotron-fluid is-primary bg-success" id="navbar id="navbar">
+          <div class="navbar-brand mb-0 h1 w-100 text-center text-white" id="navbarText">
+            Team Profile
+          </div>
+        </nav>
+      </header>`;
+  fs.writeFile("./dist/index.html", htmlStart, (err) => {
+    if (err) throw err;
+  });
+
+  for (let i = 0; i < teamArr.length; i++) {
+    let cards = `<main class="d-flex-row" style="align-content:space-between">
+    <div class="card" style="width: 15rem">
+    <div class="card-body">
+      <h4 class="card-title">${teamArr[i].name}</h4>
+      <h5 class="border-bottom">${teamArr[i].role}</h5>
+      <p class="card-text"> ID:${teamArr[i].email}</p>
+      <p class="card-text">Email: <a href="mailto:${teamArr[i].email}" class="card-text btn btn-primary">${teamArr[i].email}</a>`;
+    if (teamArr[i].officeNum) {
+      cards += `<p class="card-text"> Office Number:${teamArr[i].officeNum}</p>`;
+    } else if (teamArr[i].github) {
+      cards += `<p class="card-text"> Github:<a href="${teamArr[i].github}" target="_blank">${teamArr[i].github}</a></p>`;
+    } else {
+      cards += `<p class="card-text"> School:${teamArr[i].school}</p>`;
+    }
+    cards += `</div>
+            </div>
+            </main>
+            <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"
+            ></script>
+        </html>`;
+    fs.appendFile("./dist/index.html", cards, (err) => {
+      if (err) throw err;
+    });
+  }
+};
 
 startApp();
