@@ -12,6 +12,7 @@ To use this application you need to run 'node index.js' and then follow the prom
 
 1. Inquirer
 2. FS
+3. Bootstrap
 
 ## Github Repo
 
